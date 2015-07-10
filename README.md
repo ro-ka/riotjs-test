@@ -27,11 +27,3 @@ Run the following command to start the server on localhost:
 ```sh
 npm run server
 ```
-
-### Release
-
-To make a new release, run:
-
-```sh
-npm run release:patch|minor|major
-```
