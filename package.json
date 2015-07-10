@@ -1,0 +1,38 @@
+{
+  "name": "riotjs-test",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ro-ka/riotjs-test.git"
+  },
+  "scripts": {
+    "clean": "rm -rf {build}/*",
+    "mkdirs": "mkdir -p build/{scripts,styles}",
+    "prepare": "npm run clean && npm run mkdirs && npm run html && npm run stylus && npm run js",
+    "build": "npm run prepare",
+    "server": "npm run prepare && light-server -s build -p 8000 -w 'app/scripts/**/*.js # npm run js' -w 'app/modules/**/*.tag # npm run js' -w 'app/styles/**/*styl # npm run stylus # reloadcss' -w 'app/*.html # npm run html'",
+    "html": "cp app/*.html build",
+    "stylus": "stylus --inline --sourcemap-inline -u autoprefixer-stylus app/styles/main.styl -o build/styles",
+    "js": "browserify app/scripts/main.js -t [ riotify --type es6 ] -t babelify > build/scripts/main.js",
+    "test": "eslint ./app/scripts"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "Robert Katzki <katzki@ubilabs.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer-stylus": "^0.7.0",
+    "babel": "^5.6.14",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "eslint": "^0.23.0",
+    "light-server": "^1.0.3",
+    "riotify": "^0.1.2",
+    "stylus": "^0.51.1",
+    "stylus-normalize": "^3.0.3",
+    "uglify-js": "^2.4.19"
+  },
+  "dependencies": {}
+}

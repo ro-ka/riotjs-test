@@ -1,0 +1,23 @@
+/**
+ * Vars and config
+ */
+$base-font-size = 16
+
+/**
+ * Colors
+ */
+
+/**
+ * Functions
+ */
+font-size(_size)
+  if typeof(_size) == 'unit'
+    if unit(_size) == 'rem'
+      font-size (_size * $base-font-size)px
+  font-size _size
+
+emCalc(_px, _base = $base-font-size)
+  return (_px / _base)em;
+
+remCalc(_px)
+  return (_px / $base-font-size)rem;
